@@ -18,13 +18,22 @@ onMounted(() => {
   fetchIcons()
 })
 
-const copyIcon = () => {
-  copied_modal.showModal();
-  console.log('copyIcon...')
+const copyIcon = (icon) => {
+  console.log('copyIcon...');
 
-  setTimeout(() => {
-    // copied_modal.close();
-  }, 500)
+  navigator.clipboard.writeText(icon).then(() => {
+    copied_modal.showModal();
+
+    setTimeout(() => {
+      copied_modal.close();
+    }, 750)
+  }).catch(err => {
+    console.error('Failed to copy icon: ', err);
+
+    setTimeout(() => {
+      copied_modal.close();
+    }, 750)
+  })
 }
 </script>
 
@@ -35,9 +44,9 @@ const copyIcon = () => {
       v-for="icon in icons"
       :key="icon.id"
       class="card bg-base-100 hover:bg-[#F8F8F8] shadow-sm flex-auto"
-      @click="copyIcon()"
+      @click="copyIcon(icon.svg)"
     >
-      <div class="card-body items-center text-center">
+      <div class="card-body items-center text-center" :title="`click to copy ${icon.title}`">
         <div class="figure">
           <figure v-html="icon.svg"></figure>
         </div>
