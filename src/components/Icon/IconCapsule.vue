@@ -6,8 +6,7 @@ const icons = ref([])
 
 const fetchIcons = async () => {
   try {
-    const response = await fetch('/data/icons.json')
-
+    const response = await fetch('/data/homeIcons.json')
     icons.value = await response.json()
   } catch (error) {
     throw new Error(`Error while fetching icons. Details: ${error}`)
@@ -18,22 +17,43 @@ onMounted(() => {
   fetchIcons()
 })
 
-const copyIcon = (icon) => {
-  console.log('copyIcon...');
+const downloadIconAsImage = (svgContent, iconTitle) => {
+  const svgBlob = new Blob([svgContent], { type: 'image/svg+xml;charset=utf-8' })
+  const url = URL.createObjectURL(svgBlob)
 
-  navigator.clipboard.writeText(icon).then(() => {
-    copied_modal.showModal();
+  const img = new Image()
+  img.onload = () => {
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
 
-    setTimeout(() => {
-      copied_modal.close();
-    }, 750)
-  }).catch(err => {
-    console.error('Failed to copy icon: ', err);
+    canvas.width = img.width
+    canvas.height = img.height
+    ctx.drawImage(img, 0, 0)
 
-    setTimeout(() => {
-      copied_modal.close();
-    }, 750)
-  })
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const downloadUrl = URL.createObjectURL(blob)
+        triggerDownload(downloadUrl, iconTitle)
+        URL.revokeObjectURL(downloadUrl)
+      }
+    }, 'image/png')
+  }
+
+  img.src = url
+}
+
+const triggerDownload = (url, iconTitle) => {
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `${iconTitle}.png`
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+
+  download_modal.showModal()
+  setTimeout(() => {
+    download_modal.close()
+  }, 750)
 }
 </script>
 
@@ -44,9 +64,9 @@ const copyIcon = (icon) => {
       v-for="icon in icons"
       :key="icon.id"
       class="card bg-base-100 hover:bg-[#F8F8F8] shadow-sm flex-auto"
-      @click="copyIcon(icon.svg)"
+      @click="downloadIconAsImage(icon.svg, icon.title)"
     >
-      <div class="card-body items-center text-center" :title="`click to copy ${icon.title}`">
+      <div class="card-body items-center text-center" :title="`click to download ${icon.title}`">
         <div class="figure">
           <figure v-html="icon.svg"></figure>
         </div>

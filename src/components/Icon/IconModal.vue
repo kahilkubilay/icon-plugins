@@ -1,7 +1,7 @@
 <template>
-  <dialog id="copied_modal" class="modal modal-bottom sm:modal-middle">
+  <dialog id="download_modal" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
-      <h3 class="text-lg font-bold">Congratulations, you have successfully copied 🎉🎉</h3>
+      <h3 class="text-lg font-bold">Congratulations, you have successfully downloaded 🎉🎉</h3>
 
     </div>
   </dialog>
