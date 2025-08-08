@@ -1,0 +1,16 @@
+<template>
+  <dialog id="download_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Congratulations, you have successfully downloaded 🎉🎉</h3>
+
+    </div>
+  </dialog>
+</template>
+
+<style scoped>
+.modal-box {
+  position: absolute;
+  right: 100px;
+  bottom: 50px;
+}
+</style>
