@@ -7,14 +7,18 @@ import CustomSidebar from '@/components/Custom/CustomSidebar.vue'
 <template>
   <!-- header -->
   <HeaderComponent />
-  <div class="grid grid-cols-4">
-    <div class="col-span-1">
+  <div
+    class="grid min-h-dvh grid-cols-1 grid-rows-[1fr_1px_auto_1px_auto] lg:grid-cols-[var(--container-2xs)_2.5rem_minmax(0,1fr)_2.5rem] xl:grid-cols-[var(--container-2xs)_2.5rem_minmax(0,1fr)_2.5rem]"
+  >
+    <!--    <div class="col-span-2">-->
+    <div class="relative col-start-1 row-span-full row-start-1 max-lg:hidden">
       <!--  customization icons -->
       <CustomSidebar />
     </div>
 
     <!-- router content -->
-    <div class="col-span-2">
+    <!--    <div class="col-span-2">-->
+    <div class="relative row-start-1 grid grid-cols-subgrid lg:col-start-3">
       <RouterView />
     </div>
   </div>
