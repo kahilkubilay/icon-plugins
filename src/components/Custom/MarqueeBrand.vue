@@ -1,23 +1,45 @@
-<script setup></script>
+<script setup>
+const templateList = [
+  'JavaScript',
+  'TypeScript',
+  'Vue',
+  'React',
+  'Angular',
+  'Svelte',
+  'JavaScript',
+  'TypeScript',
+  'Vue',
+  'React',
+  'Angular',
+  'Svelte',
+]
+
+const toggleAnimation = (state) => {
+  const track = document.querySelector('.marquee-text-track')
+
+  if (track) {
+    track.style.animationPlayState = state ? 'running' : 'paused'
+  }
+}
+</script>
 
 <template>
-  <div class="wrapper fadeout-horizontal">
+  <div class="wrapper fadeout-horizontal mb-4 container mx-auto">
     <div class="marquee-text">
-      <div class="marquee-text-track">
-        <p>JavaScript</p>
-        <p>TypeScript</p>
-        <p>CSS</p>
-        <p>TailwindCSS</p>
-        <p>Accessibility</p>
-        <p>React</p>
-        <p>Angular</p>
-        <p aria-hidden="true">JavaScript</p>
-        <p aria-hidden="true">TypeScript</p>
-        <p aria-hidden="true">CSS</p>
-        <p aria-hidden="true">TailwindCSS</p>
-        <p aria-hidden="true">Accessibility</p>
-        <p aria-hidden="true">React</p>
-        <p aria-hidden="true">Angular</p>
+      <div
+        class="marquee-text-track"
+        @mouseover="toggleAnimation(false)"
+        @mouseleave="toggleAnimation(true)"
+      >
+        <ul class="flex">
+          <li v-for="template in templateList" class="marquee-capsule mr-4 p-1">
+            <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">
+              <a href="#template">
+                {{ template }}
+              </a>
+            </h4>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -33,32 +55,27 @@
   padding-left: 4.8rem;
   gap: 4.8rem;
   width: max-content;
-  animation: marquee-move-text var(--speed, 10s) linear infinite
-  var(--direction, forwards);
+  animation: marquee-move-text 15s linear infinite forwards;
 }
 
-.wrapper {
-  margin: 1em;
+.marquee-text .marquee-capsule {
+  border-radius: 65px;
+  width: 125px;
+  text-align: center;
+  background-color: #689B8A;
+  color: #fff;
 }
 
-.marquee-text p {
-  border: 3px solid black;
-  background-color: #fff;
-  border-radius: 999px;
-  padding: 1rem 2.5rem;
-  color: black;
+.marquee-text .marquee-capsule:hover {
+  cursor: pointer;
+  background-color: #280A3E;
+  text-decoration: underline;
 }
 
 @keyframes marquee-move-text {
   to {
     transform: translateX(-50%);
   }
-}
-
-.wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  color: #fff;
 }
 
 .fadeout-horizontal {
@@ -71,4 +88,3 @@
   );
 }
 </style>
-
