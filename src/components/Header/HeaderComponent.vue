@@ -1,10 +1,8 @@
-<script setup>
-import MarqueeBrand from '@/components/Custom/MarqueeBrand.vue'
-</script>
+<script setup></script>
 
 <template>
   <nav class="navbar justify-between bg-base-300">
-    <a class="btn btn-ghost text-lg">
+    <a class="btn btn-ghost text-lg" href="/">
       <img alt="Logo" src="/favicon.ico" class="w-4" />
       Icon Plugins
     </a>
@@ -52,8 +50,8 @@ import MarqueeBrand from '@/components/Custom/MarqueeBrand.vue'
     <!-- Menu for desktop -->
     <div class="hidden sm:flex gap-2">
       <a class="btn btn-ghost btn-md"> ℹ️ About </a>
-      <a class="btn btn-ghost btn-md"> 🎨 Templates </a>
-      <a class="btn btn-ghost btn-md"> ✨ Features </a>
+      <a class="btn btn-ghost btn-md" href="/templates"> 🎨 Templates </a>
+      <a class="btn btn-ghost btn-md" href="/features"> ✨ Features </a>
 
       <a class="btn btn-ghost" href="https://github.com/kahilkubilay/icon-plugins">
         <svg viewBox="0 0 24 24" aria-hidden="true" class="size-8 fill-slate-900">
