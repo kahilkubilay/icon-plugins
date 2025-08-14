@@ -3,7 +3,7 @@
 <template>
   <nav class="navbar justify-between bg-base-300">
     <a class="btn btn-ghost text-lg" href="/">
-      <img alt="Logo" src="/logo.png" class="w-6" />
+      <img alt="Logo" src="/logo.png" class="w-14" />
       Icon Plugins
     </a>
 
