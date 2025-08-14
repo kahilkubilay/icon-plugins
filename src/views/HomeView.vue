@@ -5,7 +5,7 @@ import MarqueeBrand from '@/components/Custom/MarqueeBrand.vue'
 </script>
 
 <template>
-  <main class="grid-rows-1 grid-cols-1 grid ">
+  <main>
     <!-- content -->
     <div>
       <MarqueeBrand />
